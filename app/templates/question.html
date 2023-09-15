@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %} Вопрос {% endblock %}
+
+{% block content %}
+
+<div class="question padding">
+    <div class="question__inner">
+        <div class="question__block">
+            <span class="question__category">Категория: {{ question.category|lower }}</span>
+            <span class="question__weight">Очков: {{ question.weight }}</span>
+        </div>
+        <h2 class="question__title title"><span class="question__number">Вопрос {{ question_number }}:</span> {{ question.text }}</h2>
+        <form action="" method="post">
+            {% if reading %}
+               
+                {% for option in question.options %}
+                    {% if user.answers[question.id]["answer"] == option %}
+                        <input class="question__radio" disabled checked name="answer" value="{{ option }}" id="{{ option }}" type="radio"><label class="question__label checked" for="{{ option }}">{{ option }}</label>
+                    {% else %}
+                        <input class="question__radio" disabled name="answer" value="{{ option }}" id="{{ option }}" type="radio"><label class="question__label" for="{{ option }}">{{ option }}</label>
+                    {% endif %}
+                {% endfor %}
+                <button class="question__btn btn disabled" disabled type="submit"><i class="fa-solid fa-lock"></i> Ответ принят</button>
+                
+            {% else %}
+               
+                {% for option in question.options %}
+                    <input class="question__radio" name="answer" value="{{ option }}" id="{{ option }}" type="radio"><label class="question__label" for="{{ option }}">{{ option }}</label>
+                {% endfor %}
+                <button class="question__btn btn" type="submit" disabled><i class="fa-solid fa-paper-plane"></i>Отправить ответ</button>
+                
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+<!-- Исправить эту херню -->
+<script>
+    document.getElementsByClassName("question__radio")[0].onclick = function() {
+        document.getElementsByClassName("question__btn")[0].removeAttribute("disabled");
+    };
+    document.getElementsByClassName("question__radio")[1].onclick = function() {
+        document.getElementsByClassName("question__btn")[0].removeAttribute("disabled");
+    };
+    document.getElementsByClassName("question__radio")[2].onclick = function() {
+        document.getElementsByClassName("question__btn")[0].removeAttribute("disabled");
+    };
+
+</script>
+
+{% endblock %}

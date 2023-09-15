@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Вы не авторизованы {% endblock %}
+
+{% block content %}
+
+<div class="error padding">
+    <div class="error__inner">
+        <i class="fa-solid fa-user-slash error__img"></i>
+        <h2 class="error__title title">Вы не авторизованы!</h2>
+        <p class="error__text text">С аккаунтом гостя не попасть на эту страницу :(</p>
+        <a href="{{ url_for('login') }}" class="error__main-btn btn">Регистрация<i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %} Профиль {% endblock %}
+
+{% block content %}
+<div class="profile padding">
+    <div class="profile__inner">
+        <h2 class="profile__title title"><i class="fa-solid fa-user"></i>Ваш профиль</h2>
+        <ul class="profile__list">
+            <li class="profile__item">Id: <span>{{ user.id }}</span></li>
+            <li class="profile__item">Имя: <span>{{ user.name }}</span></li>
+            <li class="profile__item">Фамилия: <span>{{ user.last_name }}</span></li>
+            <li class="profile__item">Отчество: <span>{{ user.middle_name }}</span></li>
+            <li class="profile__item">Факультет: <span>{{ user.faculty }}</span></li>
+            <li class="profile__item">Группа: <span>{{ user.group }}</span></li>
+            <li class="profile__item">Время регистрации: <span>Сегодня, {{ user.registration_time.strftime("%H:%M") }}</span></li>
+            {% if user.is_admin %}
+            <li class="profile__item">Статус: <span>Администратор</span><span class="profile__admin-btn"><a href="{{url_for('admin_panel')}}">Панель</a></span></li>
+            {% endif %}
+        </ul>
+        <h3 class="profile__minititle minititle">
+            Прогресс прохождения квеста</h3>
+        <div class="profile__amount">
+            <h4><i class="fa-solid fa-circle-question"></i>Количество вопросов <span>{{ user.answers|length }}&nbsp;/&nbsp;{{ questions_amount }}</span></h4>
+        </div>
+        <div class="profile__score">
+            <h4><i class="fa-solid fa-star"></i>Количество очков <span>{{ user.score }}&nbsp;/&nbsp;{{ max_score }}</span></h4>
+        </div>
+        <h3 class="profile__minititle minititle">Ответы на вопросы</h3>
+        <div class="profile__questions">
+            {% for id in question_ids %}
+                {% if id in user.answers and user.answers[id]["is_correct"] %}
+                    <div class="profile__question correct">#{{(question_ids.index(id))+1}}</div>
+                {% elif id in user.answers and not user.answers[id]["is_correct"] %}
+                    <div class="profile__question uncorrect">#{{(question_ids.index(id))+1}}</div>
+                {% elif id not in user.answers %}
+                    <div class="profile__question unactive" href="{{ url_for('generate_question_url', id=id) }}">#{{(question_ids.index(id))+1}}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        <h3 class="profile__minititle minititle">Выход и завершение</h3>
+        
+        {% if not user.finish_time %}
+            <p class="text profile__stop-text"><i class="fa-solid fa-circle-exclamation"></i>Не удается найти все QR-коды? Завершите игру досрочно.</p>
+            <a href="{{ url_for('stop_game') }}" class="profile__stop-btn btn"><i class="fa-solid fa-flag-checkered"></i>Завершить игру</a>
+        {% endif %}
+        
+        <p class="text profile__exit-text"><i class="fa-solid fa-circle-exclamation"></i>Выйдя из аккаунта, вы не сможете войти в него снова!</p>
+        <a href="{{ url_for('logout') }}" class="profile__exit-btn btn"><i class="fa-solid fa-door-open"></i>Выйти</a>
+    </div>
+</div>
+
+{% endblock %}

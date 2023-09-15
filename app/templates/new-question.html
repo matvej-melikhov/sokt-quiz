@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %} Новый вопрос {% endblock %}
+
+{% block content %}
+<div class="new-question padding">
+    <div class="new-question__inner">
+        <h2 class="new-question__title title">Новый вопрос</h2>
+        <form action="" method="post">
+            <textarea placeholder="Текст вопроса" name="question-text" type="text" class="new-question__question-text"></textarea>
+            <input placeholder="Вариант ответа 1" name="option-1" type="text" class="new-question__question-text">
+            <input placeholder="Вариант ответа 2" name="option-2" type="text" class="new-question__question-text">
+            <input placeholder="Вариант ответа 3" name="option-3" type="text" class="new-question__question-text">
+            <input placeholder="Правильный ответ" name="answer" type="text" class="new-question__question-text">
+            <input placeholder="Категория" name="category" type="text" class="new-question__question-text">
+            <input placeholder="Вес" name="weight" type="text" class="new-question__question-text">
+            <button type="submit" class="new-question__btn btn">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+<!-- Исправить эту херню -->
+<script>
+    document.getElementsByClassName("new-question__radio")[0].onclick = function() {
+        document.getElementsByClassName("new-question__btn")[0].removeAttribute("disabled");
+    };
+    document.getElementsByClassName("new-question__radio")[1].onclick = function() {
+        document.getElementsByClassName("new-question__btn")[0].removeAttribute("disabled");
+    };
+    document.getElementsByClassName("new-question__radio")[2].onclick = function() {
+        document.getElementsByClassName("new-question__btn")[0].removeAttribute("disabled");
+    };
+
+</script>
+
+{% endblock %}

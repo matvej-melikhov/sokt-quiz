@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} Результаты {% endblock %}
+
+{% block content %}
+
+<div class="background"></div>
+<div class="result padding">
+    <div class="result__inner">
+        <h2 class="result__title title"><i class="fa-solid fa-flag-checkered"></i>Результаты игры!</h2>
+        <p class="result__description">Поздравляем! Ты прошёл QR-квест Путь молодого Стажёра.
+Получить приз можешь в палатке «Общественные организации» или в Профкоме после подведения итогов.</p>
+        <div class="result__wrapper">
+            <div class="result__item">
+                <p class="result__text"><i class="fa-solid fa-circle-question"></i>Правильно отвеченных вопросов <span>{{ correct_answers|length }}/{{ questions_amount }}</span></p>
+            </div>
+            <div class="result__item">
+                <p class="result__text"><i class="fa-solid fa-star"></i>Набранных очков <span>{{ user.score }}/{{ max_score }}</span></p>
+            </div>
+            <div class="result__item">
+                <p class="result__text"><i class="fa-solid fa-hourglass-start"></i>Вам понадобилось на это <span>{{ time_list.hours }}:{{ time_list.minutes }}:{{ time_list.seconds }}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.body.onload = function() {
+        document.getElementsByClassName("map-btn")[0].style.display='none';
+        document.getElementsByClassName("rating-btn")[0].style.display='none';
+        document.getElementsByClassName("scanner-btn")[0].style.display='none';
+        document.body.style.padding='0px';
+    }
+</script>
+
+
+{% endblock %}

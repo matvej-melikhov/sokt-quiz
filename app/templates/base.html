@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{url_for('index')}}static/img/logo.png">
+
+    <link rel="stylesheet" href="{{ url_for('index') }}static/css/main.css">
+    <script src="https://kit.fontawesome.com/0ad5947fc3.js" crossorigin="anonymous"></script>
+
+    <title>СОКТ-викторина |{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="{{url_for('index')}}"><img src="{{url_for('index')}}static/img/header-logos.png" alt="СОКТ" class="header__img"></a>
+
+        {% if session["user_id"] %}
+        <a href="{{url_for('profile')}}" class="header__name"><i class="fa-solid fa-circle-user"></i> {{ session["user_name"] }}</a>
+        {% else %}
+        <a href="{{url_for('login')}}" class="header__name"><i class="fa-solid fa-bolt-lightning"></i> Начать</a>
+        {% endif %}
+    </header>
+
+    {% if session["user_id"] %}
+    <a href="{{url_for('map')}}" class="map-btn btn"><i class="fa-solid fa-map"></i>Карта</a>
+    <a href="{{url_for('mobile_rating')}}" class="rating-btn btn"><i class="fa-solid fa-crown"></i>Рейтинг</a>
+    <a href="{{ url_for('scanner') }}" class="scanner-btn btn"><i class="fa-solid fa-qrcode"></i></a>
+    {% endif %}
+
+    {% for msg in get_flashed_messages() %}
+    <div class="flash">{{ msg }}<i class="fa-solid fa-arrow-right"></i></div>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+
+
+</body>
+
+</html>

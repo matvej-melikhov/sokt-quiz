@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %} Удалить пользователя {% endblock %}
+
+{% block content %}
+<div class="delete padding">
+    <div class="delete__inner">
+        <h2 class="delete__title title">Удалить пользователя</h2>
+        <form action="" method="get" class="delete__search">
+            <input placeholder="Id" class="delete__search-input" type="text" name="search" value="{{ request.args.get('search', '') }}">
+            <button class="delete__search-btn btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <form action="" method="post" class="delete__form">
+            <table class="stats__iksweb iksweb">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>Id</td>
+                        <td>Имя</td>
+                        <td>Фамилия</td>
+                        <td>Отчество</td>
+                        <td>Факультет</td>
+                        <td>Группа</td>
+                        <td>Админ</td>
+                        <td>Начал</td>
+                        <td>Вопросов</td>
+                        <td>Очков</td>
+                    </tr>
+                    {% for user in users %}
+                    
+                    {% if user.id == current_id %}
+                        <td><input disabled type="checkbox" name="user_id" value="{{ user.id }}"></td>
+                    {% else %}
+                    <tr>
+                        <td><input type="checkbox" name="user_id" value="{{ user.id }}"></td>
+                    {% endif %}
+                    
+                    <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.middle_name }}</td>
+                        <td>{{ user.faculty }}</td>
+                        <td>{{ user.group }}</td>
+                        <td>{{ user.is_admin }}</td>
+                        <td>{{ user.registration_time.strftime("%d.%m, %H:%M") }}</td>
+                        <td>{{ user.answers|length }}</td>
+                        <td>{{ user.score }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button class="delete__del-btn btn" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

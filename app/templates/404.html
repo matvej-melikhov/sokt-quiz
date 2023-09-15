@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Страницы не существует {% endblock %}
+
+{% block content %}
+
+<div class="error padding">
+    <div class="error__inner">
+        <i class="fa-regular fa-circle-xmark error__img"></i>
+        <h2 class="error__title title">Страницы не существует!</h2>
+        <p class="error__text text">Извините, но страницы с таким URL-адресом не существует :(</p>
+        <a href="{{ url_for('index') }}" class="error__main-btn btn">Понимаю<i class="fa-solid fa-thumbs-up"></i></a>
+    </div>
+</div>
+
+{% endblock %}

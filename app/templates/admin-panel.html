@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Админ-панель {% endblock %}
+
+{% block content %}
+<div class="admin-panel padding">
+    <div class="admin-panel__inner">
+        <h2 class="admin-panel__title title">Админ панель</h2>
+        <p>У вас есть доступ к инструментам администратора</p>
+        <a href="{{url_for('new_question')}}" class="admin-panel__btn btn">Добавить вопрос</a>
+        <a href="{{url_for('stats')}}" class="admin-panel__btn btn">Статистика</a>
+        <a href="{{url_for('rating')}}" class="admin-panel__btn btn">Рейтинг</a>
+        <a href="{{url_for('delete_user')}}" class="admin-panel__btn btn">Удалить пользователей</a>
+        <a href="{{url_for('admin_logout')}}" class="admin-panel__btn admin-panel__btn_exit btn">Отключить права администратора</a>
+    </div>
+</div>
+{% endblock %}

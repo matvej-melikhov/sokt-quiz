@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %} Статистика {% endblock %}
+
+{% block content %}
+
+<div class="stats padding">
+    <div class="stats__inner">
+        <h2 class="stats__title title">Аналитика викторины</h2>
+        <p class="stats__users-number">Всего пользователей: {{ users|length }}</p>
+        <table class="stats__iksweb iksweb">
+            <tbody>
+                <tr>
+                    <td>Id</td>
+                    <td>Имя</td>
+                    <td>Фамилия</td>
+                    <td>Отчество</td>
+                    <td>Факультет</td>
+                    <td>Группа</td>
+                    <td>Админ</td>
+                    <td>Начал</td>
+                    <td>Вопросов</td>
+                    <td>Очков</td>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.middle_name }}</td>
+                    <td>{{ user.faculty }}</td>
+                    <td>{{ user.group }}</td>
+                    <td>{{ user.is_admin }}</td>
+                    <td>{{ user.registration_time.strftime("%d.%m, %H:%M") }}</td>
+                    <td>{{ user.answers|length }}</td>
+                    <td>{{ user.score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2 class="stats__title title">Ссылки на генерацию вопросов</h2>
+        <table class="stats__iksweb iksweb">
+            <tbody>
+                <tr>
+                    <td>№</td>
+                    <td>Id</td>
+                    <td>Категория</td>
+                    <td>Вес</td>
+                    <td>Текст вопроса</td>
+                    <td>Ответ</td>
+                    <td>URL</td>
+                </tr>
+                {% for question in questions %}
+                <tr>
+                    <td>{{ questions.index(question)+1 }}</td>
+                    <td>{{ question.id }}</td>
+                    <td>{{ question.category }}</td>
+                    <td>{{ question.weight }}</td>
+                    <td>{{ question.text }}</td>
+                    <td>{{ question.answer }}</td>
+                    <td><a href="{{ url_for('generate_question_url', id=question.id) }}">Ссылка</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

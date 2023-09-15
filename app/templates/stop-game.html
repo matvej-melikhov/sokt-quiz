@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Закончить игру {% endblock %}
+
+{% block content %}
+
+{% for msg in get_flashed_messages() %}
+<div class="flash">{{ msg }}<i class="fa-solid fa-arrow-right"></i></div>
+{% endfor %}
+
+<div class="stop-game padding">
+    <div class="stop-game__inner">
+       <h2 class="stop-game__title title">Завершить игру</h2>
+       <p class="stop-game__text text"><i class="fa-solid fa-circle-exclamation"></i>Внимание: завершив игру сейчас, вы не сможете продолжить её!</p> 
+        
+        <form action="" method="post">
+            <button class="stop-game__btn btn" type="submit"><i class="fa-solid fa-flag-checkered"></i>Завершить игру</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

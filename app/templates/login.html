@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Регистрация {% endblock %}
+
+{% block content %}
+<div class="login">
+    <div class="login__inner">
+        <h2 class="login__title title">Давай начнем игру!</h2>
+        <form class="login__form" action="" method="post">
+            <input required class="login__input" name="name" placeholder="Имя">
+            <input required class="login__input" name="last_name" placeholder="Фамилия">
+            <input class="login__input" name="middle_name" placeholder="Отчество">
+            <input required class="login__input" name="faculty" placeholder="Факультет">
+            <input required class="login__input" name="group" placeholder="Номер группы">
+            <button required class="login__btn btn" type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

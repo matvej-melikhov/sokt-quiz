@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="{{url_for('index')}}static/img/logo.png">
+
+    <link rel="stylesheet" href="{{ url_for('index') }}static/css/main.css">
+    <script src="https://kit.fontawesome.com/0ad5947fc3.js" crossorigin="anonymous"></script>
+
+    <title>СОКТ-викторина | Игра не началась</title>
+
+    <style>
+        .blocker {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          height: 100vh;
+          width: 100%;
+        }
+        .blocker__to-main {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          padding: 20px 30px;
+          background: linear-gradient(45deg, #1cbc78, #1cbc91);
+          color: white;
+          border-radius: 15px;
+          -webkit-box-shadow: 0px 4px 50px 0px rgba(20, 191, 112, 0.2);
+                  box-shadow: 0px 4px 50px 0px rgba(20, 191, 112, 0.2);
+        }
+        .blocker__inner {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+        }
+        .blocker__logo {
+          width: 120px;
+          text-align: center;
+          margin: 0 auto;
+        }
+        .blocker__title {
+          text-align: center;
+          color: #8b41c1;
+        }
+        .blocker__item {
+          margin: 0 auto;
+          padding: 40px 40px;
+          border-radius: 30px;
+          background: white;
+          color: #1cbc78;
+          text-align: center;
+          margin-bottom: 3vh;
+        }
+        .blocker__text {
+          font-size: 20px;
+          font-weight: 500;
+          color: #6c22a2;
+          line-height: auto;
+        }
+        .blocker__text i {
+          font-size: 20px;
+          margin-left: 0;
+          margin-right: 15px;
+          color: #8b41c1;
+          display: inline-block;
+          padding-bottom: 10px;
+        }
+        .blocker__time {
+          display: block;
+          margin: 0 auto;
+          border-radius: 20px;
+          padding: 15px 30px;
+          background: linear-gradient(45deg, #8b41c1, #7241c1);
+          -webkit-box-shadow: 0px 4px 50px 0px rgba(139, 65, 193, 0.51);
+                  box-shadow: 0px 4px 50px 0px rgba(139, 65, 193, 0.51);
+          color: white;
+          font-size: 30px;
+          font-weight: 500;
+          margin-top: 30px;
+        }
+        .blocker__time span {
+          color: white;
+          font-weight: 500;
+          font-size: 30px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="blocker">
+        <div class="blocker__inner">
+            <a href="{{url_for('index')}}" class="blocker__to-main"><i class="fa-solid fa-house"></i>На главную</a>
+            <img src="{{url_for('index')}}static/img/logo.png" alt="" class="blocker__logo">
+            <div class="blocker__item">
+                <div class="blocker__text">
+                    <i class="fa-solid fa-clock"></i>До начала игры осталось:
+                    <div class="blocker__time">
+                        <span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://vk.com/eltech_career" class="vk-btn btn"><i class="fa-brands fa-vk"></i></a>
+    <div class="back"></div>
+
+    <script>
+        window.onload = function() {
+
+            var distance = {{delta}}
+
+            var timerId = setInterval(function() {
+
+                var hours = Math.floor(distance / 3600);
+                var minutes = Math.floor(distance % 3600 / 60);
+                var seconds = Math.floor(distance % 3600 % 60);
+
+                document.querySelectorAll(".hours")[0].innerHTML = ('0000' + hours).slice(-2);
+                document.querySelectorAll(".minutes")[0].innerHTML = ('0000' + minutes).slice(-2);
+                document.querySelectorAll(".seconds")[0].innerHTML = ('0000' + seconds).slice(-2);
+
+                seconds--;
+                distance--;
+
+                if (seconds < 0 && minutes == 0 && hours == 0) {
+                    clearInterval(timerId);
+                    window.location.href = "{{ url_for(next) }}";
+                }
+
+                if (seconds == 00) {
+                    minutes--;
+                    seconds = 60;
+                    if (minute == 0) {
+                        hours--;
+                        minutes = 60;
+                    }
+                }
+
+            }, 1000);
+        }
+
+    </script>
+
+
+</body>
+
+</html>

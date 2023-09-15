@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %} Главная {% endblock %}
+
+{% block content %}
+
+<div class="main-banner padding">
+    <div class="main-banner__inner">
+        <h1 class="main-banner__title title">
+            QR-квест: <span>Путь молодого Стажёра</span>
+            <a href="{{ url_for('index') }}static/pdf/sokt.pdf" class="main-banner__what-is"><i class="fa-solid fa-circle-info"></i>Что такое СОКТ?</a>
+        </h1>
+        <p class="main-banner__text text"><span>На старт! Внимание! Карьера!</span> Впереди тебя ждут счастливые студенческие годы и успешная карьера. А начать и то, и другое уже сейчас поможет наш квест, с любовью подготовленный <span>Студенческим офисом карьеры и трудоустройства.</span></p>
+        <p class="main-banner__text text">Отвечай на несложные, интересные и познавательные вопросы, разбирайся в запутанных лабиринтах университета и становись первым в <span>Первом Электротехническом!</span></p>
+        <a id="how-to-play" href="#how-to-play" class="main-banner__how btn"><i class="fa-solid fa-circle-info"></i>Как играть?</a>
+        <a href="{{url_for('login')}}" class="main-banner__start btn"><i class="fa-solid fa-bolt-lightning"></i>Начать игру!</a>
+    </div>
+</div>
+
+<div class="how-to-play">
+   <div class="how-to-play__inner">
+        <h2 class="how-to-play__title title">Как играть?</h2>
+<!--       <a class="how-to-play__download" download href="\{{ url_for('index') }}static/pdf/instruction.pdf"><i class="fa-solid fa-download"></i>Скачать pdf-инструкцию</a>-->
+        <div class="how-to-play__wrapper">
+           
+            <div class="how-to-play__item">
+                <i class="fa-solid fa-bolt-lightning how-to-play__item-img"></i>
+                <h3 class="how-to-play__item-title minititle">Регистрируйся</h3>
+                <p class="how-to-play__item-text text">Заполни информацию о себе на странице регистрации, чтобы мы могли отслеживать твои успехи.</p>
+            </div>
+            
+            <div class="how-to-play__item">
+                <i class="fa-solid fa-file-pdf how-to-play__item-img"></i>
+                <h3 class="how-to-play__item-title minititle">Скачивай презентацию</h3>
+                <p class="how-to-play__item-text text">Скачай презентацию по кнопке <a class="how-to-play__link" href="{{url_for('index')}}static/pdf/sokt.pdf">«Что такое СОКТ?»</a> и получи ответы на множество вопросов!</p>
+            </div>
+            
+            <div class="how-to-play__item">
+                <i class="fa-solid fa-map how-to-play__item-img"></i>
+                <h3 class="how-to-play__item-title minititle">Открывай карту</h3>
+                <p class="how-to-play__item-text text">Мы подготовили интерактивную карту ЛЭТИ. Нажимай на метки <i class="fa-solid fa-location-dot"></i>, чтобы узнать информацию о локациях.</p>
+            </div>
+            
+            <div class="how-to-play__item">
+                <i class="fa-solid fa-qrcode how-to-play__item-img"></i>
+                <h3 class="how-to-play__item-title minititle">Сканируй коды</h3>
+                <p class="how-to-play__item-text text">Найди QR-код и отсканируй с помощью нашего сканера или любого другого приложения.</p>
+            </div>
+            
+            <div class="how-to-play__item">
+                <i class="fa-solid fa-pen how-to-play__item-img"></i>
+                <h3 class="how-to-play__item-title minititle">Отвечай на вопросы</h3>
+                <p class="how-to-play__item-text text">После сканирования ты попадешь на страницу с вопросом, который мы подготовили для тебя.</p>
+            </div>
+            
+            <div class="how-to-play__item">
+                <i class="fa-solid fa-trophy how-to-play__item-img"></i>
+                <h3 class="how-to-play__item-title minititle">Выигрывай призы</h3>
+                <p class="how-to-play__item-text text">Отсканируй все QR-коды, ответь на все вопросы и получи подарки от Профкома студентов и аспирантов СПбГЭТУ ЛЭТИ.</p>
+            </div>
+            
+        </div>
+   </div>    
+</div>
+
+{% include "footer.html" %}
+
+{% endblock %}

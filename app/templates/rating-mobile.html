@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %} Рейтинг {% endblock %}
+
+{% block content %}
+
+<div class="rating-mobile padding">
+    <div class="rating-mobile__inner">
+        <h2 class="rating-mobile__title title">Таблица лидеров</h2>
+        <table class="rating-mobile__iksweb iksweb">
+            <tbody>
+                <tr>
+                    <td>Место</td>
+                    <td>Имя</td>
+                    <td>Фамилия</td>
+                    <td>Факультет</td>
+                    <td>Вопросов</td>
+                    <td>Очков</td>
+                    <td>Время в игре</td>
+                    <td>Завершил игру</td>
+                </tr>
+                {% for user in users %}
+                    {% if cur_user == user %}
+                        <tr class="current">
+                            <td>{{ users.index(user)+1 }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.faculty }}</td>
+                            <td>{{ user.answers|length }}</td>
+                            <td>{{ user.score }}</td>
+                            <td>{{":".join(times[users.index(user)].values())}}</td>
+                            <td>{{"Да" if user.finish_time else "Нет"}}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>{{ users.index(user)+1 }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.faculty }}</td>
+                            <td>{{ user.answers|length }}</td>
+                            <td>{{ user.score }}</td>
+                            <td>{{":".join(times[users.index(user)].values())}}</td>
+                            <td>{{"Да" if user.finish_time else "Нет"}}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

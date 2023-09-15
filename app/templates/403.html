@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Доступ запрещен {% endblock %}
+
+{% block content %}
+
+<div class="error padding">
+    <div class="error__inner">
+        <i class="fa-solid fa-lock error__img"></i>
+        <h2 class="error__title title">Доступ запрещен!</h2>
+        <p class="error__text text">Извините, но вам не доступен контент данной страницы :(</p>
+        <a href="{{ url_for('index') }}" class="error__main-btn btn">Понимаю<i class="fa-solid fa-thumbs-up"></i></a>
+    </div>
+</div>
+
+{% endblock %}

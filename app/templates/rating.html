@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Refresh" content="10">
+    <link rel="icon" href="{{url_for('index')}}static/img/logo.jpg">
+
+    <link rel="stylesheet" href="{{ url_for('index') }}static/css/main.css">
+    <script src="https://kit.fontawesome.com/0ad5947fc3.js" crossorigin="anonymous"></script>
+
+    <title>СОКТ-викторина | Рейтинг</title>
+</head>
+
+<body>
+    <div class="rating padding">
+        <div class="rating__inner">
+            <h2 class="rating__title title"><i class="fa-solid fa-trophy"></i>Рейтинг игроков в реальном времени</h2>
+
+            <div class="tbl-header">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                        <tr>
+                            <th><i class="fa-solid fa-bolt"></i>Место</th>
+                            <th><i class="fa-solid fa-user"></i>Имя</th>
+                            <th><i class="fa-solid fa-user"></i>Фамилия</th>
+                            <th><i class="fa-solid fa-user"></i>Отчество</th>
+                            <th><i class="fa-solid fa-graduation-cap"></i>Факультет</th>
+                            <th><i class="fa-solid fa-graduation-cap"></i>Группа</th>
+                            <th><i class="fa-solid fa-circle-question"></i>Вопросов</th>
+                            <th><i class="fa-solid fa-star"></i>Очков</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbl-content">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td><span class="rating__place">{{ users.index(user)+1 }}</span></td>
+                            <td title="{{user.id}}">{{ user.name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.middle_name }}</td>
+                            <td>{{ user.faculty }}</td>
+                            <td>{{ user.group }}</td>
+                            <td>{{ user.answers|length }}</td>
+                            <td>{{ user.score }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Админ вход {% endblock %}
+
+{% block content %}
+<div class="login">
+    <div class="login__inner">
+        <h2 class="login__title title">Авторизация админа</h2>
+        <form class="login__form" action="" method="post">
+            <input class="login__input" name="code" placeholder="Код">
+            <button class="login__btn btn" type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
